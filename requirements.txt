@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+# face_recognition requires C++ compiled dlib. 
+# If installation fails, user might need to install dlib manually or use pre-built wheels.
+face_recognition
+numpy
+opencv-python

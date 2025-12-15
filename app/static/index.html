@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Attendance System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Antigravity Attendance</h1>
+            <p>Automated Classroom Attendance via Face Recognition</p>
+            <div class="features-section">
+                <div class="feature-badge">
+                    <span class="feature-icon">👓</span>
+                    <span>Works with Spectacles</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="drop-zone" id="drop-zone">
+                    <div class="file-choices">
+                        <div class="choice-item" id="trigger-upload">
+                            <span class="choice-icon">📁</span>
+                            <span>Upload File</span>
+                        </div>
+                        <div class="choice-item" id="trigger-camera">
+                            <span class="choice-icon">📷</span>
+                            <span>Camera</span>
+                        </div>
+                    </div>
+                    <p class="drop-zone__prompt" style="margin-top: 1rem; font-size: 0.9rem;">or drag & drop here</p>
+                    <input type="file" name="file" class="drop-zone__input" id="fileInput" accept="image/*">
+                    <input type="file" name="camera" class="drop-zone__input" id="cameraInput" accept="image/*"
+                        capture="environment">
+                </div>
+                <button id="processBtn" class="btn primary-btn" disabled>Process Attendance</button>
+            </div>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing faces...</p>
+            </div>
+
+            <div id="results" class="results-section hidden">
+                <div class="summary-cards">
+                    <div class="card">
+                        <h3>Total</h3>
+                        <span id="total-count">0</span>
+                    </div>
+                    <div class="card present">
+                        <h3>Present</h3>
+                        <span id="present-count">0</span>
+                    </div>
+                    <div class="card absent">
+                        <h3>Absent</h3>
+                        <span id="absent-count">0</span>
+                    </div>
+                    <div class="card unknown">
+                        <h3>Unknown</h3>
+                        <span id="unknown-count">0</span>
+                    </div>
+                </div>
+
+                <div class="lists-container">
+                    <div class="list-box">
+                        <h2>Present Students</h2>
+                        <ul id="present-list" class="student-list"></ul>
+                    </div>
+                    <div class="list-box">
+                        <h2>Absent Students</h2>
+                        <ul id="absent-list" class="student-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
