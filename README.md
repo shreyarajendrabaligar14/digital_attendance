@@ -1,2 +1,3 @@
-This is my first Git Repositary for project
+This is my first Git Repositary for project.
+<br>
 Author-Shreya RB
