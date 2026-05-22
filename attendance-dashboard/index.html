@@ -266,6 +266,7 @@
                                                 <tr>
                                                     <th className="px-4 py-3 font-medium">Name</th>
                                                     <th className="px-4 py-3 font-medium">Roll No</th>
+                                                    <th className="px-4 py-3 font-medium text-right">Confidence %</th>
                                                 </tr>
                                             </thead>
                                             <tbody className="divide-y divide-gray-100">
@@ -274,11 +275,16 @@
                                                         <tr key={idx} className="hover:bg-emerald-50/30 transition-colors">
                                                             <td className="px-4 py-3 font-medium text-gray-800">{student.name || 'Unknown'}</td>
                                                             <td className="px-4 py-3 text-gray-500">{student.roll_no || 'N/A'}</td>
+                                                            <td className="px-4 py-3 text-right">
+                                                                <span className="inline-flex items-center justify-center px-2 py-1 rounded text-xs font-medium bg-emerald-100 text-emerald-700">
+                                                                    {student.confidence ? (student.confidence * 100).toFixed(1) + '%' : 'N/A'}
+                                                                </span>
+                                                            </td>
                                                         </tr>
                                                     ))
                                                 ) : (
                                                     <tr>
-                                                        <td colSpan="2" className="px-4 py-8 text-center text-gray-400">No present students data</td>
+                                                        <td colSpan="3" className="px-4 py-8 text-center text-gray-400">No present students data</td>
                                                     </tr>
                                                 )}
                                             </tbody>
@@ -353,7 +359,7 @@
                                     {loading ? (
                                         <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center z-10 transition-opacity">
                                             <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mb-3"></div>
-                                            <p className="text-sm font-medium text-indigo-800 animate-pulse">Processing AI Face Recognition...</p>
+                                            <p className="text-sm font-medium text-indigo-800 animate-pulse">Running Face Recognition...</p>
                                         </div>
                                     ) : null}
                                     

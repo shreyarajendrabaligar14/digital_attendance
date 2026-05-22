@@ -5,7 +5,18 @@ from fastapi.staticfiles import StaticFiles
 from app.core.attendance import process_attendance
 from app.core.database import db
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="Antigravity Attendance System")
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Mount static files for frontend
 app.mount("/static", StaticFiles(directory="app/static"), name="static")

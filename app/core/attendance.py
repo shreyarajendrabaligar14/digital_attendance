@@ -12,15 +12,8 @@ MATCH_THRESHOLD = 0.5 # Lower is stricter. 0.6 is typical default. User asked fo
 # If they want "80% confidence", we can interpret that mapping distance to confidence.
 # For now, I will use a conservative distance threshold, e.g., 0.5.
 
-def calculate_confidence(face_distance: float, face_match_threshold: float = 0.6) -> float:
-    range_val = (1.0 - face_match_threshold)
-    linear_val = (1.0 - face_distance) / (range_val * 2.0)
-
-    if face_distance > face_match_threshold:
-        return round(linear_val * 100, 2)
-    else:
-        value = (linear_val + ((1.0 - linear_val) * np.pow((linear_val - 0.5) * 2, 0.2))) * 100
-        return round(value, 2)
+def calculate_confidence(face_distance: float) -> float:
+    return round((1.0 - face_distance) * 100, 2)
 
 async def process_attendance(image_file_path: str) -> Dict[str, Any]:
     # 1. Load the uploaded image
@@ -68,7 +61,7 @@ async def process_attendance(image_file_path: str) -> Dict[str, Any]:
                 present_students_list.append({
                     "name": known_face_names[best_match_index],
                     "roll_no": known_face_rolls[best_match_index],
-                    "match_confidence": confidence
+                    "confidence": confidence
                 })
             else:
                 # This student was already found. 
